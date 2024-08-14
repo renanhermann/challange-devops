@@ -12,5 +12,5 @@ variable "environment" {
 
 variable "repository" {
   type = string
-  default = "renanhermann/desafio-devops"
+  default = "renanhermann/devops-challange"
 }
