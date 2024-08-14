@@ -13,9 +13,26 @@ This project aims to demonstrate the configuration and deployment of an applicat
 - **Terraform**: Used to provision resources on AWS, including the ECR repository and necessary IAM roles.
 - **GitHub Actions**: Used to automate the build, test, and deployment of the application.
 
-## How?
 
-### 1. Clone the Repository First, clone the repository to your local machine: ```bash git clone https://github.com/renanhermann/challange-devops.git cd challange-devops```
+## CI/CD Pipeline Overview
+
+This project includes a CI/CD pipeline configured using GitHub Actions. The pipeline is designed to automatically build and deploy the application whenever changes are pushed to the `main` branch.
+
+### How the Pipeline Works
+
+1. **Triggering the Pipeline**: The pipeline is triggered automatically whenever a commit is pushed to the `main` branch of the repository.
+
+2. **Building the Application**: Once triggered, the pipeline pulls the latest code from the repository and builds a Docker image of the application. This image is then pushed to an Amazon Elastic Container Registry (ECR) repository.
+
+3. **Deploying the Application**: After the Docker image is successfully built and stored in ECR, the pipeline proceeds to deploy the application to AWS App Runner. The App Runner service will use the latest Docker image from ECR to run the application.
+
+
+## How can I use?
+
+### 1. Clone the Repository First, clone the repository to your local machine: 
+
+```bash git clone https://github.com/renanhermann/challange-devops.git cd challange-devops```
+
 
 ### Terraform Remote State Setup
 
