@@ -13,7 +13,7 @@ This project aims to demonstrate the configuration and deployment of an applicat
 - **Terraform**: Used to provision resources on AWS, including the ECR repository and necessary IAM roles.
 - **GitHub Actions**: Used to automate the build, test, and deployment of the application.
 
-## How Can I Run?
+## How?
 
 ### 1. Clone the Repository First, clone the repository to your local machine: ```bash git clone https://github.com/renanhermann/challange-devops.git cd challange-devops```
 
@@ -100,4 +100,16 @@ terraform apply --auto-approve
 ```
 
 
-### 5. Configure GitHub Secrets After the Terraform configuration is applied, it will generate outputs, including the ARNs for the IAM roles and the AWS region. These outputs should be added as secrets in your GitHub repository settings: - **AWS_APP_RUNNER_ROLE**: Set this to the ARN of the App Runner IAM role. - **AWS_LOGIN_ROLE**: Set this to the ARN of the IAM role used for login/authentication. - **AWS_REGION**: Set this to the AWS region where your resources are deployed. To add these secrets: 1. Go to your GitHub repository. 2. Click on **Settings** > **Secrets and variables** > **Actions**. 3. Add the secrets using the output values from the Terraform apply step.
+### 5. Configure GitHub Secrets
+
+After the Terraform configuration is applied, it will generate outputs, including the ARNs for the IAM roles and the AWS region. These outputs should be added as secrets in your GitHub repository settings:
+
+- **AWS_APP_RUNNER_ROLE**: Set this to the ARN of the App Runner IAM role.
+- **AWS_LOGIN_ROLE**: Set this to the ARN of the IAM role used for login/authentication.
+- **AWS_REGION**: Set this to the AWS region where your resources are deployed.
+
+To add these secrets:
+
+1. Go to your GitHub repository.
+2. Click on **Settings** > **Secrets and variables** > **Actions**.
+3. Add the secrets using the output values from the Terraform apply step.
