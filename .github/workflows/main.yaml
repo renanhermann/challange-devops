@@ -1,0 +1,29 @@
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    name: "Build and Push"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Substitua '3.x' pela versão específica do Python que você deseja usar, por exemplo, '3.9'
+
+
+      - name: Generate tag
+        id: generate_tag
+        run: |
+          SHA=$(echo $GITHUB_SHA | head -c7)
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+
