@@ -15,6 +15,8 @@ This project aims to demonstrate the configuration and deployment of an applicat
 
 ## How Can I Run?
 
+### 1. Clone the Repository First, clone the repository to your local machine: ```bash git clone https://github.com/renanhermann/challange-devops.git cd challange-devops```
+
 ### Terraform Remote State Setup
 
 #### Introduction
@@ -36,7 +38,7 @@ Before proceeding, ensure you have the following:
 Move to the directory where the Terraform configuration for setting up the remote state is located:
 
 ```
-cd terraform/00-remote-state
+cd challange-devops/terraform/00-remote-state
 terraform init
 ```
 
@@ -73,8 +75,16 @@ Before you begin, make sure you have:
 First, navigate to the directory where the Terraform configurations for creating the necessary deployment resources are located:
 
 ```
-cd terraform/01-application
+cd challange-devops/terraform/01-application
+
+#If the backend configuration is not defined in the main configuration files, initialize Terraform with the backend flags:
+
 terraform init -backend=true -backend-config="config/dev/backend.hcl"
+
+#Otherwise, simply run:
+
+terraform init
+
 ```
 
 Review the Terraform Plan
@@ -86,5 +96,8 @@ terraform plan
 Apply the Terraform Configuration
 
 ```
-terraform apply -auto-approve
+terraform apply --auto-approve
 ```
+
+
+### 5. Configure GitHub Secrets After the Terraform configuration is applied, it will generate outputs, including the ARNs for the IAM roles and the AWS region. These outputs should be added as secrets in your GitHub repository settings: - **AWS_APP_RUNNER_ROLE**: Set this to the ARN of the App Runner IAM role. - **AWS_LOGIN_ROLE**: Set this to the ARN of the IAM role used for login/authentication. - **AWS_REGION**: Set this to the AWS region where your resources are deployed. To add these secrets: 1. Go to your GitHub repository. 2. Click on **Settings** > **Secrets and variables** > **Actions**. 3. Add the secrets using the output values from the Terraform apply step.
